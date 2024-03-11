@@ -49,19 +49,9 @@ public class VacancyController {
     }
 
     @GetMapping("/vacancy/search")
-    public List<VacancyDto> vacancySearch(@RequestParam(required = false) String search,
-                                            @RequestHeader(name = "Authorization") String token) {
-        System.out.println("the token:" + token + "1");
+    public List<VacancyDto> vacancySearch(@RequestParam(required = false) String search) {
         return vacancyService.searchVacancy(search);
     }
-    @GetMapping("/search")
-    public List<VacancyDto> vacancySearch2(@RequestParam(required = false) String search) {
-
-        return vacancyService.searchVacancy(search);
-    }
-
-
-
     @GetMapping("/vacancy/filter")
     public List<VacancyDto> filter(@RequestParam(required = false) String category, @RequestParam(required = false) String position, @RequestParam(required = false) String country,
                                                     @RequestParam(required = false) String city, @RequestParam(required = false) String experience, @RequestParam(required = false)
@@ -74,8 +64,7 @@ public class VacancyController {
 
     @GetMapping("/employer/vacancies/search/{userId}")
     List<VacancyDto> employerVacanciesSearchUserId(@PathVariable Long userId,
-                                                        @RequestParam(required = false) String search,
-                                                        @RequestHeader(name = "Authorization") String token) {
+                                                        @RequestParam(required = false) String search) {
         return vacancyService.employerVacanciesSearchUserId(userId, search);
     }
 
@@ -91,8 +80,7 @@ public class VacancyController {
 
 
     @GetMapping("/vacancies/{userId}")
-    public List<VacancyDto> getAllMyVacancies(@PathVariable Long userId,
-                                                   @RequestHeader(name = "Authorization") String token) {
+    public List<VacancyDto> getAllMyVacancies(@PathVariable Long userId) {
         User user = userRepository.findById(userId).orElseThrow(() ->
                 new ResourceNotFoundException("User not found!" + userId));
         return vacancyService.getMyVacancies(user.getId());
@@ -100,8 +88,7 @@ public class VacancyController {
 
     @PostMapping("/update/vacancy/{vacancyId}")
     public VacancyDto updateVacancy(@PathVariable Long vacancyId,
-                                         @RequestBody VacancyDto vacancyRequest,
-                                         @RequestHeader(name = "Authorization", required = false) String token) {
+                                         @RequestBody VacancyDto vacancyRequest) {
 
         return vacancyService.update(vacancyId, vacancyRequest);
     }

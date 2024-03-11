@@ -1,9 +1,5 @@
 package com.nurmatov.mindhunter.web.controller;
 
-import com.nurmatov.mindhunter.domain.entity.userInfo.Vacancy;
-import com.nurmatov.mindhunter.repository.JobSeekerRepository;
-import com.nurmatov.mindhunter.repository.UserRepository;
-import com.nurmatov.mindhunter.service.EmployerService;
 import com.nurmatov.mindhunter.service.JobSeekerService;
 import com.nurmatov.mindhunter.service.VacancyService;
 import com.nurmatov.mindhunter.web.dto.JobSeeker.JobSeekerDto;
@@ -18,15 +14,11 @@ import java.util.List;
 public class JobSeekerController {
     private final JobSeekerService jobSeekerService;
     private final VacancyService vacancyService;
-    private final UserRepository userRepository;
-    private final JobSeekerRepository jobSeekerRepository;
-    private final EmployerService employerService;
 
 
 
     @GetMapping("/search")
     public List<JobSeekerDto> search(@RequestParam(required = false) String name, @RequestParam(required = false) String email) {
-        System.out.println("nameis"+name+"1");
         return jobSeekerService.findByName(name, email);
     }
 
@@ -41,16 +33,8 @@ public class JobSeekerController {
     public void setStatusForJobSeeker(@PathVariable Long vacancyId,
                                       @PathVariable Long userId,
                                       @RequestParam(required = false) String status) {
-
-//        if (blockedUserService.getUsernameFromToken(token).getBlockedUser().getVacancyAndHiringManagement()) {
-//            throw new BlockedException("THIS USER IS NOT ALLOWED TO VACANCY AND HIRING MANAGEMENT");
-//        }
         vacancyService.setStatusOfJobSeeker(vacancyId, userId, status);
     }
-
-
-
-
     @GetMapping("/statusOfJobSeekerForVacancy")
     public List<String> statusOfJobSeekers() {
         return jobSeekerService.getStatusOfJobSeeker();
@@ -59,8 +43,7 @@ public class JobSeekerController {
 
 
     @GetMapping("/get/jobseeker/{jobSeekerId}")
-    public JobSeekerDto jobSeekerResponses(@PathVariable Long jobSeekerId,
-                                                 @RequestHeader (name="Authorization") String token) {
+    public JobSeekerDto jobSeekerResponses(@PathVariable Long jobSeekerId) {
         return jobSeekerService.getById(jobSeekerId);
     }
 
