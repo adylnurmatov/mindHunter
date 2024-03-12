@@ -4,6 +4,7 @@ import com.nurmatov.mindhunter.domain.enums.Role;
 import com.nurmatov.mindhunter.web.dto.validation.OnCreate;
 import com.nurmatov.mindhunter.web.dto.validation.OnUpdate;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -11,6 +12,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
+@AllArgsConstructor
 public class JobSeekerDto {
     @NotNull(message = "id cannot be null", groups = OnUpdate.class)
     private Long id;

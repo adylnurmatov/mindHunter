@@ -1,6 +1,7 @@
 package com.nurmatov.mindhunter.service.impl;
 
 import com.nurmatov.mindhunter.domain.entity.userInfo.Education;
+import com.nurmatov.mindhunter.repository.UserRepository;
 import com.nurmatov.mindhunter.service.EmployerService;
 import com.nurmatov.mindhunter.web.dto.employer.EmployerDto;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +12,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class EmployerServiceImpl implements EmployerService {
+    private final UserRepository userRepository;
     @Override
     public List<EmployerDto> getAll() {
         return null;
@@ -33,7 +35,7 @@ public class EmployerServiceImpl implements EmployerService {
 
     @Override
     public void deleteById(Long id) {
-
+        userRepository.deleteById(id);
     }
 
     @Override

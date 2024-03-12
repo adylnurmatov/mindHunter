@@ -16,5 +16,5 @@ public class Category {
     private String name;
     @OneToMany(fetch = FetchType.EAGER)
     @JoinTable(inverseJoinColumns = @JoinColumn(name = "position_id"))
-    private List<Position> position;
+    private List<Position> positions;
 }

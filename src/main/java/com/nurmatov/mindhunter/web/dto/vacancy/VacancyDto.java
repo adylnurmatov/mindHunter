@@ -5,6 +5,7 @@ import com.nurmatov.mindhunter.domain.entity.userInfo.Position;
 import com.nurmatov.mindhunter.domain.entity.userInfo.Salary;
 import com.nurmatov.mindhunter.domain.enums.EmploymentType;
 import com.nurmatov.mindhunter.domain.enums.VacancyStatus;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,6 +14,7 @@ import java.util.List;
 
 @Setter
 @Getter
+@AllArgsConstructor
 public class VacancyDto {
     private Long id;
     private String companyName;

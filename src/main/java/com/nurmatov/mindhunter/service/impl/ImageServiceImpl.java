@@ -27,7 +27,6 @@ import java.util.Optional;
 import java.util.Random;
 
 
-
 @Service
 @RequiredArgsConstructor
 public class ImageServiceImpl implements ImageService {
