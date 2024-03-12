@@ -1,8 +1,8 @@
 package com.nurmatov.mindhunter.service.impl;
 
 
-import com.amazonaws.services.mediastoredata.model.PutObjectRequest;
 import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import com.amazonaws.util.IOUtils;
@@ -11,7 +11,7 @@ import com.nurmatov.mindhunter.domain.exception.ResourceNotFoundException;
 import com.nurmatov.mindhunter.repository.ImageRepository;
 import com.nurmatov.mindhunter.service.ImageService;
 import lombok.RequiredArgsConstructor;
-import lombok.Value;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
