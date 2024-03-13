@@ -10,7 +10,6 @@ public interface UserService {
 
     User getByUsername(String username);
 
-    boolean changePassword(String email, String password);
 
     String changePassword(String email, String oldPassword, String newPassword);
 }

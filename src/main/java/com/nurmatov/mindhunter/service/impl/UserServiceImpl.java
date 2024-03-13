@@ -36,14 +36,15 @@ public class UserServiceImpl implements UserService {
         }
         return user.get();
     }
-
-    @Override
-    public boolean changePassword(String email, String password) {
-        return false;
-    }
-
     @Override
     public String changePassword(String email, String oldPassword, String newPassword) {
-        return null;
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("NOT_FOUND"));
+        if(user.getPassword().equals(oldPassword)){
+            user.setPassword(newPassword);
+            return newPassword;
+        }
+        else{
+            return oldPassword;
+        }
     }
 }
