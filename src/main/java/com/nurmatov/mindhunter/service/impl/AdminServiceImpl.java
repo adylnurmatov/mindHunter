@@ -1,7 +1,9 @@
 package com.nurmatov.mindhunter.service.impl;
 
+import com.nurmatov.mindhunter.repository.UserRepository;
 import com.nurmatov.mindhunter.service.AdminService;
 import com.nurmatov.mindhunter.web.dto.user.UserDto;
+import com.nurmatov.mindhunter.web.mapper.user.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,33 +12,22 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class AdminServiceImpl implements AdminService {
+    private final UserRepository userRepository;
+    private final UserMapper userMapper;
     @Override
     public List<UserDto> getAllUsers(String name, String userRole) {
-        return null;
-    }
-
-    @Override
-    public void setRoleForUser(Long userId, String role) {
-
+        return userMapper.toDtos(userRepository.findAll());
     }
 
     @Override
     public boolean deleteByAccount(String email) {
-        return false;
+        userRepository.deleteByEmail(email);
+        return true;
     }
 
     @Override
     public boolean deleteByAccount(String email, String password) {
-        return false;
-    }
-
-    @Override
-    public boolean listForDeletingUsers(List<Long> selectedUserIds) {
-        return false;
-    }
-
-    @Override
-    public boolean listForDeletingVacancy(List<Long> selectedVacancyIds) {
-        return false;
+        userRepository.deleteByEmailAndPassword(email, password);
+        return true;
     }
 }

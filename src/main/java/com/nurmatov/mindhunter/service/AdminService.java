@@ -8,14 +8,9 @@ import java.util.List;
 public interface AdminService {
     List<UserDto> getAllUsers(String name, String userRole);
 
-    void setRoleForUser(Long userId, String role);
-
     boolean deleteByAccount(String email);
 
     boolean deleteByAccount(String email, String password);
-
-    boolean listForDeletingUsers(List<Long> selectedUserIds);
-    boolean listForDeletingVacancy(List<Long> selectedVacancyIds);
 
 
 }
