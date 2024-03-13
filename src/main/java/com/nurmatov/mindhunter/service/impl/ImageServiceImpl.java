@@ -37,7 +37,6 @@ public class ImageServiceImpl implements ImageService {
 
     @Value("${location.path}")
     private String PATH;
-
     @Autowired
     private AmazonS3 s3Client;
 

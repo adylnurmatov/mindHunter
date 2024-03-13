@@ -25,4 +25,13 @@ public class CategoryMapperImpl implements CategoryMapper{
         }
         return categoryDtos;
     }
+
+    @Override
+    public Category toEntity(CategoryDto categoryDto) {
+        Category category = new Category();
+        category.setId(categoryDto.getId());
+        category.setName(categoryDto.getName());
+        category.setPositions(categoryDto.getPositions());
+        return category;
+    }
 }
