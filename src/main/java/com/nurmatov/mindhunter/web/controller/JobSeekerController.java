@@ -1,5 +1,7 @@
 package com.nurmatov.mindhunter.web.controller;
 
+import com.nurmatov.mindhunter.domain.entity.userInfo.Education;
+import com.nurmatov.mindhunter.domain.entity.userInfo.Position;
 import com.nurmatov.mindhunter.service.JobSeekerService;
 import com.nurmatov.mindhunter.service.VacancyService;
 import com.nurmatov.mindhunter.web.dto.JobSeeker.JobSeekerDto;
@@ -18,8 +20,8 @@ public class JobSeekerController {
 
 
     @GetMapping("/search")
-    public List<JobSeekerDto> search(@RequestParam(required = false) String name, @RequestParam(required = false) String email) {
-        return jobSeekerService.findByName(name, email);
+    public List<JobSeekerDto> search(@RequestParam(required = false) String name) {
+        return jobSeekerService.findByName(name);
     }
 
 
@@ -35,21 +37,12 @@ public class JobSeekerController {
                                       @RequestParam(required = false) String status) {
         vacancyService.setStatusOfJobSeeker(vacancyId, userId, status);
     }
-    @GetMapping("/statusOfJobSeekerForVacancy")
-    public List<String> statusOfJobSeekers() {
-        return jobSeekerService.getStatusOfJobSeeker();
-    }
 
 
 
     @GetMapping("/get/jobseeker/{jobSeekerId}")
     public JobSeekerDto jobSeekerResponses(@PathVariable Long jobSeekerId) {
         return jobSeekerService.getById(jobSeekerId);
-    }
-
-    @PostMapping("/create")
-    public JobSeekerDto save(@RequestBody JobSeekerDto jobSeeker) {
-        return jobSeekerService.save(jobSeeker);
     }
 
 
@@ -64,8 +57,8 @@ public class JobSeekerController {
         return vacancyService.getAll();
     }
     @GetMapping("/candidate/filter")
-    public List<JobSeekerDto> filter2(@RequestParam(required = false) String position,
-                                            @RequestParam(required = false) String education,
+    public List<JobSeekerDto> filter2(@RequestParam(required = false) Position position,
+                                            @RequestParam(required = false) Education education,
                                             @RequestParam(required = false) String country,
                                             @RequestParam(required = false) String city,
                                             @RequestParam(required = false) String experience) {

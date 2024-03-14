@@ -9,9 +9,8 @@ import com.nurmatov.mindhunter.web.dto.JobSeeker.JobSeekerDto;
 import java.util.List;
 
 public interface JobSeekerService {
-    List<String> getStatusOfJobSeeker();
 
-    List<JobSeekerDto> findByName(String name, String email);
+    List<JobSeekerDto> findByName(String name);
 
 
 //    FileResponse uploadResume(MultipartFile file, Long id);
@@ -19,13 +18,16 @@ public interface JobSeekerService {
 
     List<JobSeekerDto> getAllJobSeekers();
 
-    JobSeekerDto save(JobSeekerDto jobSeeker);
 
     JobSeekerDto update(Long id, JobSeekerDto jobSeeker);
 
     JobSeekerDto getById(Long id);
 
-    List<JobSeekerDto> filter(String position, String education, String country, String city, String experience);
+    List<JobSeekerDto> filter(Position position,
+                              Education education,
+                              String country,
+                              String city,
+                              String experienceName);
 
 
 
@@ -34,6 +36,5 @@ public interface JobSeekerService {
             String lastname
     );
 
-    List<JobSeekerDto> getAllPositions();
-    String getExperience(List<Profession> professions);
+    List<Position> getAllPositions();
 }
