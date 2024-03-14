@@ -28,9 +28,9 @@ public class EmployerController {
 
 
 
-    @GetMapping("/educations")
-    public List<Education> education() {
-        return employerService.getEducations();
+    @GetMapping("/{id}/educations")
+    public List<Education> education(@PathVariable Long id) {
+        return employerService.getEducations(id);
     }
 
     @GetMapping("employers")
@@ -43,8 +43,6 @@ public class EmployerController {
     public List<String> responseEntity() {
         return employerService.getTypeOfEmployments();
     }
-
-    // IMAGE AND FILE UPLOAD
 
     @GetMapping("/salaryType")
     public List<String> salaryType() {

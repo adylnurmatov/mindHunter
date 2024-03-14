@@ -9,15 +9,13 @@ import java.util.List;
 public interface EmployerService {
     List<EmployerDto> getAll();
 
-    EmployerDto save(EmployerDto employerDto);
-
     EmployerDto update(Long id, EmployerDto employerDto);
 
     EmployerDto getById(Long id);
 
     void deleteById(Long id);
 
-    List<Education> getEducations();
+    List<Education> getEducations( Long id);
 
     List<String> getTypeOfEmployments();
 

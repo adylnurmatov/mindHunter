@@ -4,6 +4,7 @@ import com.nurmatov.mindhunter.domain.entity.user.User;
 import com.nurmatov.mindhunter.domain.exception.ResourceNotFoundException;
 import com.nurmatov.mindhunter.repository.UserRepository;
 import com.nurmatov.mindhunter.service.UserService;
+import com.nurmatov.mindhunter.web.dto.user.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -47,4 +48,18 @@ public class UserServiceImpl implements UserService {
             return oldPassword;
         }
     }
+
+    @Override
+    public UserDto createUser(UserDto userDto) {
+        User user = new User(
+
+                userDto.getUsername(),
+                userDto.getEmail(),
+                userDto.getPassword(),
+                userDto.getRole()
+        );
+        userRepository.saveAndFlush(user);
+        return userDto;
+    }
+
 }
