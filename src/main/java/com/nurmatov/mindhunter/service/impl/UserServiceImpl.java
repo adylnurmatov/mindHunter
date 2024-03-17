@@ -1,8 +1,11 @@
 package com.nurmatov.mindhunter.service.impl;
 
 import com.nurmatov.mindhunter.domain.entity.user.User;
+import com.nurmatov.mindhunter.domain.enums.Role;
 import com.nurmatov.mindhunter.domain.exception.ResourceNotFoundException;
 import com.nurmatov.mindhunter.repository.UserRepository;
+import com.nurmatov.mindhunter.service.EmployerService;
+import com.nurmatov.mindhunter.service.JobSeekerService;
 import com.nurmatov.mindhunter.service.UserService;
 import com.nurmatov.mindhunter.web.dto.user.UserDto;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +18,9 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
+    private final JobSeekerService jobSeekerService;
+    private final EmployerService employerService;
+
     @Override
     public User getById(Long userId) {
         return userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("NOT_FOUND"));
@@ -51,14 +57,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto createUser(UserDto userDto) {
-        User user = new User(
-
-                userDto.getUsername(),
-                userDto.getEmail(),
-                userDto.getPassword(),
-                userDto.getRole()
-        );
-        userRepository.saveAndFlush(user);
+        if(userDto.getRole().equals(Role.EMPLOYER)){
+            employerService.create(userDto);
+        }
+        else{
+            jobSeekerService.create(userDto);
+        }
         return userDto;
     }
 

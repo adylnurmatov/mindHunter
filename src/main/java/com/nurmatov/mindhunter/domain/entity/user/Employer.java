@@ -2,6 +2,7 @@ package com.nurmatov.mindhunter.domain.entity.user;
 
 import com.nurmatov.mindhunter.domain.entity.userInfo.Image;
 import com.nurmatov.mindhunter.domain.entity.userInfo.Vacancy;
+import com.nurmatov.mindhunter.domain.enums.Role;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
@@ -25,4 +26,7 @@ public class Employer extends User{
     private String about;
     private String phoneNumber;
 
+    public Employer(String username, String email, String password, Role role) {
+        super(username, email, password, role);
+    }
 }

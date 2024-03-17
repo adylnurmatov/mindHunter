@@ -3,6 +3,7 @@ package com.nurmatov.mindhunter.service;
 
 import com.nurmatov.mindhunter.domain.entity.userInfo.Education;
 import com.nurmatov.mindhunter.web.dto.employer.EmployerDto;
+import com.nurmatov.mindhunter.web.dto.user.UserDto;
 
 import java.util.List;
 
@@ -22,4 +23,5 @@ public interface EmployerService {
     List<String> getSalaryTypes();
 
     List<String> getValutes();
+    UserDto create(UserDto employerDto);
 }

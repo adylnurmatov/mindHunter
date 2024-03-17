@@ -11,6 +11,7 @@ import com.nurmatov.mindhunter.repository.EmployerRepository;
 import com.nurmatov.mindhunter.repository.UserRepository;
 import com.nurmatov.mindhunter.service.EmployerService;
 import com.nurmatov.mindhunter.web.dto.employer.EmployerDto;
+import com.nurmatov.mindhunter.web.dto.user.UserDto;
 import com.nurmatov.mindhunter.web.mapper.employer.EmployerMapper;
 import com.nurmatov.mindhunter.web.mapper.user.UserMapper;
 import lombok.RequiredArgsConstructor;
@@ -82,6 +83,18 @@ public class EmployerServiceImpl implements EmployerService {
         list.add(String.valueOf(Valute.RUB));
         list.add(String.valueOf(Valute.SOM));
         return list;
+    }
+
+    @Override
+    public UserDto create(UserDto employerDto) {
+        Employer employer = new Employer(
+                employerDto.getUsername(),
+                employerDto.getEmail(),
+                employerDto.getPassword(),
+                employerDto.getRole()
+        );
+        employerRepository.saveAndFlush(employer);
+        return employerDto;
     }
 
 }

@@ -9,6 +9,7 @@ import com.nurmatov.mindhunter.repository.JobSeekerRepository;
 import com.nurmatov.mindhunter.repository.PositionRepository;
 import com.nurmatov.mindhunter.service.JobSeekerService;
 import com.nurmatov.mindhunter.web.dto.JobSeeker.JobSeekerDto;
+import com.nurmatov.mindhunter.web.dto.user.UserDto;
 import com.nurmatov.mindhunter.web.mapper.jobSeeker.JobSeekerMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -85,5 +86,10 @@ public class JobSeekerServiceImpl implements JobSeekerService {
     @Override
     public List<Position> getAllPositions() {
         return positionRepository.findAll();
+    }
+
+    @Override
+    public JobSeekerDto create(UserDto jobSeekerDto) {
+        return null;
     }
 }

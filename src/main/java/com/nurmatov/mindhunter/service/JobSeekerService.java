@@ -5,6 +5,8 @@ import com.nurmatov.mindhunter.domain.entity.userInfo.Education;
 import com.nurmatov.mindhunter.domain.entity.userInfo.Position;
 import com.nurmatov.mindhunter.domain.entity.userInfo.Profession;
 import com.nurmatov.mindhunter.web.dto.JobSeeker.JobSeekerDto;
+import com.nurmatov.mindhunter.web.dto.user.UserDto;
+import org.springframework.data.domain.PageRequest;
 
 import java.util.List;
 
@@ -37,4 +39,7 @@ public interface JobSeekerService {
     );
 
     List<Position> getAllPositions();
+
+
+    JobSeekerDto create(UserDto jobSeekerDto);
 }
